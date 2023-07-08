@@ -1,0 +1,1 @@
+C:\Users\mhasa\source\repos\TestDeneme\TestDeneme\TestDeneme.csproj;x64

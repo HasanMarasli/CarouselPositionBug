@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestDeneme.MainPage"
+             xmlns:local = "clr-namespace:TestDeneme.models" >
+
+    <Grid RowDefinitions="*,Auto">
+        
+        <CarouselView x:Name="OnBoardingCarouselView"
+                      HorizontalOptions="FillAndExpand"
+                      VerticalOptions="FillAndExpand"
+                      IsBounceEnabled="False"
+                      Loop="True"
+                      ItemsSource="{Binding GunlerList}"
+                      PositionChangedCommand="{Binding HandlePositionChangedCommand}"
+                      PositionChangedCommandParameter="{Binding Source={RelativeSource Self}, Path=Position}"
+                      IndicatorView="CarouselIndicator"
+                      Position="{Binding CarouselPosition, Mode=TwoWay}">
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <Grid RowDefinitions="5*,100*,15*"
+                          
+                          ColumnDefinitions="1*,1*">
+                        
+                        <Label Text="{Binding SayfaNo}"
+                               FontSize="Title"
+                               HorizontalOptions="Center"
+                               Grid.Row="0"
+                               Grid.Column="0"
+                               VerticalOptions="Center"/>
+                        <Label Text="{Binding MevcutGun}"
+                               FontSize="Title"
+                               HorizontalOptions="Center"
+                               Grid.Row="0" 
+                               Grid.Column="1"
+                               VerticalOptions="Center"/>
+
+                        <ScrollView Grid.Row="1" 
+                                    Grid.ColumnSpan="2"
+                                    x:Name="scroll">
+
+                            <Label Text="{Binding Metin}"
+                                   x:Name="ScrollLabel"
+                                   FontSize="25"
+                                   HorizontalOptions="End"
+                                   HorizontalTextAlignment="End"
+                                   Margin="0,0,25,0"/>
+                        </ScrollView>
+                        
+
+
+                    </Grid>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+        <Grid Grid.Row="1" ColumnDefinitions="*,Auto">
+            <IndicatorView x:Name="CarouselIndicator" Grid.Column="0"
+                           IndicatorsShape="Circle"
+                           IndicatorSize="12"
+                           IndicatorColor="{StaticResource Secondary}"
+                           SelectedIndicatorColor="{StaticResource Primary}"
+                           VerticalOptions="Center">
+                
+            </IndicatorView>
+            
+            <StackLayout Grid.Column="1">
+                <Button x:Name="NextButton" Text="Next" 
+        Command="{Binding HandleNextButtonClick}"
+        IsVisible="{Binding NextButtonVisibility}">
+                </Button>
+
+
+                <Button x:Name="EnterButton" Text="Enter" 
+                        Command="{Binding HandleEnterButtonClickCommand}"
+                        IsVisible="{Binding EnterButtonVisibility}">
+                    
+                </Button>
+            </StackLayout>
+        </Grid>
+    </Grid>
+
+</ContentPage>
